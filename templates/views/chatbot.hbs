@@ -1,0 +1,51 @@
+{{> head}}
+
+<body class="row">
+
+
+  <!-- start of nav bar -->
+
+  {{> navBar}}
+
+  <!-- end of navbar -->
+
+
+  <!-- start of side bar -->
+  {{> sidebar}}
+
+  <!-- end of side bar -->
+
+  <!-- start of page content -->
+  <div class="col-sm-6 pt-2 mt-3  " style="padding-left: 20px;">
+      <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  {{!-- chat-icon="https:&#x2F;&#x2F;www.pngitem.com&#x2F;pimgs&#x2F;m&#x2F;500-5002858_chatbot-icon-chatbot-icon-transparent-background-hd-png.png" --}}
+  intent="WELCOME"
+  chat-title="mediBot"
+  agent-id={{agentId}}
+  language-code="en"
+  expand
+></df-messenger>
+
+  </div>
+
+  <!-- end of page  content -->
+
+
+
+
+
+  <!-- start of events rightbar -->
+  {{> events.rightbar}}
+
+  <!-- end of events bar -->
+
+
+  {{> footer}}
+
+
+ 
+
+    
+
+

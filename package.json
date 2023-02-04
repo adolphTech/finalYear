@@ -1,0 +1,25 @@
+{
+  "name": "honey",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start":"node src/server.js",
+    "dev": "nodemon src/server.js  -e ejs,hbs,js,css,scss,ejs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.2.6",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.1.1",
+    "dialogflow-fulfillment": "^0.6.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "handlebars": "^4.7.7",
+    "hbs": "^4.2.0",
+    "mongoose": "^6.9.0",
+    "nodemon": "^2.0.20"
+  }
+}
