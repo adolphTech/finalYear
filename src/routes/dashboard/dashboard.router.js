@@ -1,12 +1,17 @@
 const express = require("express");
 
 
-const {httpRenderDashboard}= require("./dashboard.controller");
+
+const {ensureAuthenticated} = require("../../middlewares/auth")
+
+
+const {httpRenderDashboard,}= require("./dashboard.controller");
 
 
 const dashboardRouter = express.Router();
 
-dashboardRouter.get("/",httpRenderDashboard);
+dashboardRouter.get("/",ensureAuthenticated,httpRenderDashboard);
+// dashboardRouter.get("/table",renderTable)
 
 
 

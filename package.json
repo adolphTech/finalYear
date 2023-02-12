@@ -4,22 +4,32 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start":"node src/server.js",
-    "dev": "nodemon src/server.js  -e ejs,hbs,js,css,scss,ejs"
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js  -e ejs,hbs,js,css,scss,ejs",
+    "login": "nodemon play/login/src/app.js -e ejs,hbs,js,css,scss,ejs"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.2.6",
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "crypto-js": "^4.1.1",
+    "datatables.net": "^1.13.2",
     "dialogflow-fulfillment": "^0.6.1",
     "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
     "express": "^4.18.2",
+    "express-session": "^1.17.3",
     "handlebars": "^4.7.7",
     "hbs": "^4.2.0",
-    "mongoose": "^6.9.0",
-    "nodemon": "^2.0.20"
+    "mongoose": "^6.9.1",
+    "nodemon": "^2.0.20",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
+    "validator": "^13.9.0"
   }
 }
