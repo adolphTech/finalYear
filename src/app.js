@@ -9,14 +9,7 @@ const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
 
-
-
 const docPassport = require("./middlewares/both.passport");
-
-
-
-
-
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -37,11 +30,6 @@ app.use(
 );
 
 //passport middleware
-// app.use(passportPatient.initialize());
-// app.use(passportPatient.session());
-
-// app.use(passportDoctor.initialize());
-// app.use(passportDoctor.session());
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -84,14 +72,17 @@ hbs.registerPartials(partialsPath);
 // route paths
 const dashboardRouter = require("./routes/dashboard/dashboard.router");
 const chatBotRouter = require("./routes/chatbot/chatbot.router");
-// const usersRouter = require("./routes/users/users.router");
 const docsRouter = require("./routes/users/docs/docs.router")
 const usersRouter = require("./routes/users/patients/patients.router")
+const appointmentsRouter = require("./routes/appointments/appointment.router")
+const  prescriptionRouter= require("./routes/prescriptions/prescriptions.router")
 
 // routes
 app.use("/", dashboardRouter);
 app.use("/chat", chatBotRouter);
 app.use("/users", usersRouter);
-app.use("/docs",docsRouter)
+app.use("/docs",docsRouter);
+app.use("/appointments",appointmentsRouter);
+app.use("/presc",prescriptionRouter);
 
 module.exports = app;

@@ -10,7 +10,8 @@ const {
     httpUserLogout,
     httpMyAccount,
     renderPatientRegisterPage,
-    httpRegisterPatient
+    httpRegisterPatient,
+    httpAllpatientsForDoc
 
 } = require("./docs.controller")
 
@@ -20,6 +21,8 @@ const docsRouter = express.Router();
 // pages
 
 docsRouter.get("/me",ensureAuthenticated,httpMyAccount)
+
+docsRouter.get("/pats",httpAllpatientsForDoc)
 
 
 docsRouter.get("/login",renderLoginPage);

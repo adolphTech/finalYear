@@ -4,6 +4,45 @@ const passportDoctor = require("passport");
 const Doc = require("../../../models/users/doc/docs.model");
 const User = require("../../../models/users/patients/patients.model");
 
+
+// api 
+// todo:error for no pdoc
+
+async function httpAllpatientsForDoc(req,res){
+  try {
+     
+  //   if(!req.query.doc){
+      
+  //     res.send("user is equired for this")
+    
+  //   }else{
+  //     const doc = req.query.doc
+  //   const appointments = await Appointment.find({patient})
+  //   res.send(appointments);
+
+  //   
+ 
+  const patients = await User.find({})
+  res.send(patients)
+
+
+}catch (e) {
+    console.log(e)
+  }
+}
+
+
+
+
+
+// api ---end
+
+
+
+
+
+
+
 // pages to render
 async function renderLoginPage(req, res) {
   res.render("doc.login.hbs");
@@ -27,7 +66,7 @@ async function renderPatientRegisterPage(req, res) {
 
 //register handler
 async function httpRegisterPatient(req, res) {
-  console.log(req.body);
+  // console.log(req.body);
   // return;
   const { name, email, password, password2, contact, dob, gender } = req.body;
   let errors = [];
@@ -247,6 +286,7 @@ async function httpUserRegister(req, res) {
 // };
 
 async function httpUserLogin(req, res, next) {
+  
   passportDoctor.authenticate("doctor", {
     successRedirect: "/",
     failureRedirect: "/docs/login",
@@ -286,4 +326,5 @@ module.exports = {
   httpMyAccount,
   httpRegisterPatient,
   renderPatientRegisterPage,
+  httpAllpatientsForDoc,
 };

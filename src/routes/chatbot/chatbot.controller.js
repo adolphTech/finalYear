@@ -311,7 +311,7 @@ async function httpDialogflowFullfilment(request, response) {
     agent.add(
       `Hello ${username}, i am your medical Bot are you having any symptoms ?`
     );
-    const payload = {
+    const payload = {   
       richContent: [
         [
           {
