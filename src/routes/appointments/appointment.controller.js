@@ -6,8 +6,10 @@ const Patient = require("../../models/users/patients/patients.model");
 
 async function httpRenderDoctorsAppointments(req,res){
     try{
-      // TODO : MOMENT JS 
-        const appointmentsArr =await axios.get("http://localhost:3000/appointments")
+      // TODO : MOMENT JS  && url change 
+      const doc_id = req.user._id.toString();
+
+        const appointmentsArr =await axios.get(`http://localhost:3000/appointments?doc=${doc_id}`)
         const appointments= appointmentsArr.data
 
       
@@ -39,7 +41,8 @@ async function httpRenderPatientAppointments(req,res){
   }
 
 }
-// TODO:ADD PHYSICAL AND ONLINE MODE on appointment
+
+
 async function httpAddAppointment(req, res) {
     // todo : doctors id from user.id
     // todo : patients from the selected 
@@ -60,7 +63,6 @@ async function httpAddAppointment(req, res) {
       appointmentNumber: appointmentCount + 1,
       appointmentDate,
       patient: patient_id,
-      doctor: doctor_id,
       appointmentTime: time,
     });
 
@@ -78,18 +80,22 @@ async function httpFetchAppointment(req, res) {
   // Todo: patients id should be the selected patient from the datatable;
 
   try {
-    // todo : --- this route shows only the logged in doctors appointments
+   
+    if(!req.query.doc){
+       // todo : --- error if not id
+       res.send("missing parameters")
 
-    const doctor = "63e8b36fd60ae343737f85af";
-    const appointments = await Appointment.find({doctor})
+    }else{
+      const doctor = req.query.doc;
+      const appointments = await Appointment.find({doctor})
     .populate('patient')
     .populate('doctor')
     .exec();
 
-    
- 
-
     res.send(appointments);
+    }
+
+    
   } catch (e) {
     console.log(e)
   }

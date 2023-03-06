@@ -24,15 +24,10 @@ const appointmentsSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Patient'
   },
-
-  doctor: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Doc'
-  },
-  status:{
+  mode:{
     type:String,
     required:true,
-    default:"booked"
+    default:"online"
 
   }
 });

@@ -9,6 +9,10 @@ const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
 
+// twilio 
+
+
+
 const docPassport = require("./middlewares/both.passport");
 
 app.use(bodyParser.json());
@@ -76,7 +80,8 @@ const docsRouter = require("./routes/users/docs/docs.router")
 const usersRouter = require("./routes/users/patients/patients.router")
 const appointmentsRouter = require("./routes/appointments/appointment.router")
 const  prescriptionRouter= require("./routes/prescriptions/prescriptions.router")
-
+const patManageRouter=require("./routes/manage/manage.router")
+const meetingRouter = require("./routes/meeting/meeting.router")
 // routes
 app.use("/", dashboardRouter);
 app.use("/chat", chatBotRouter);
@@ -84,5 +89,7 @@ app.use("/users", usersRouter);
 app.use("/docs",docsRouter);
 app.use("/appointments",appointmentsRouter);
 app.use("/presc",prescriptionRouter);
+app.use("/manage",patManageRouter);
+app.use("/meeting",meetingRouter)
 
 module.exports = app;

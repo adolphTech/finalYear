@@ -1,0 +1,103 @@
+
+  
+
+
+{{> head}}
+
+  <link rel="stylesheet" href="/css/appointment.datatable.css">
+<body class="row">
+
+
+  <!-- start of nav bar -->
+
+  {{> navBar}}
+
+  <!-- end of navbar -->
+
+
+  <!-- start of side bar -->
+  {{> sidebar}}
+  
+  <!-- end of side bar -->
+ 
+  <!-- start of page content -->
+  <div class="col-sm-8 pt-2 mt-3  " style="">
+    
+                       {{> messages }}
+    <nav class="navbar navbar-expand-sm bg-dark container-fluid">
+
+   <p class="text-white p-1 fs-5">APPOINTMENTS  <span> Dr.{{appointments.appointmentNumber}}</p></span>
+  
+ </nav>
+   
+   
+   <div class="bg-white p-3  pt-4 ">
+  <table id="allpat-table" class="table  table-responsive   table-striped  table-bordered">
+  <thead>
+    <tr>
+      <th class="fs-6">Id</th>
+      <th class="fs-6">Name</th>
+      <th class="fs-6">Email</th>
+      <th class="fs-6"> Contact</th>
+      <th class="fs-6">Gender</th>
+     
+       <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    {{#each patients}}
+    <tr>
+      <td>{{this.patientId}}</td>
+      <td class="fs-6 text-nowrap">{{this.name}}</td>
+      <td>{{this.email}}</td>
+      <td class="fs-6 text-nowrap">{{this.contact}}</td>
+      <td class="fs-6">{{this.gender}}</td>
+      
+      
+      <td class="fs-6">
+        <button  class='btn btn-link btn-sm' id="prescButton" data-bs-toggle='modal tooltip'  data-bs-patientid="{{this.patientId}}" data-bs-target="#prescModal" data-bs-placement="bottom" title="Add Prescription">
+            <span style="font-size: 1.2em;">
+         <i class="fa-solid fa-user-doctor"></i>
+            </span>
+            </button>
+
+        <button class='btn btn-link btn-sm ' data-bs-toggle='modal tooltip' data-bs-target="#exampleModal" data-bs-placement="top" title="Add Appointment" style="">
+            <span style="font-size: 1.2em; color:;">
+                  <i class="fa-solid fa-calendar-check"></i>
+            </span>
+             
+        </button>
+
+        </td>
+       
+     
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+</div>
+<!-- Modal -->
+{{>addPrescription.modal}}
+  </div>
+
+ 
+
+
+  <!-- end of page  content -->
+
+
+
+
+
+  <!-- start of events rightbar -->
+  {{!-- {{> events.rightbar}} --}}
+
+  <!-- end of events bar -->
+
+
+  {{> footer}}
+
+
+
+

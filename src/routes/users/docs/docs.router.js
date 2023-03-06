@@ -26,7 +26,7 @@ docsRouter.get("/pats",httpAllpatientsForDoc)
 
 
 docsRouter.get("/login",renderLoginPage);
-docsRouter.get("/register",renderRegisterPage);
+docsRouter.get("/register",ensureAuthenticated,renderRegisterPage);
 // 
 docsRouter.get("/addPat",ensureAuthenticated,renderPatientRegisterPage)
 docsRouter.post("/addPat",ensureAuthenticated,httpRegisterPatient)

@@ -1,21 +1,31 @@
-//this is the dashboard controller
+const axios = require("axios");
+const Appointment = require("../../models/appointments/appoitments.model");
+const Doctor = require("../../models/users/doc/docs.model");
+const Patient = require("../../models/users/patients/patients.model");
 
-async function httpRenderAllPats(req,res){
-    
+// todo: make this link to api ----
+
+async function httpRenderPats(req,res){
     try{
-       
-        res.render("doc.prescriptions.hbs")
-        
-        // console.log(req)
+     
+        const doc_id = req.user._id.toString();
+        const patientsArr = await axios.get(`http://localhost:3000/docs/pats?doc=${doc_id}`)
+        const patients = patientsArr.data
 
 
 
-    }catch(e){
-        res.status(500).send(e)
-    }
+ 
+       res.render("pats.hbs",{patients})
+  
+
+    // res.send(patients.data)
+ 
+   }catch(e){
+       console.log(e)
+   }
 }
 
 
 
 
-module.exports = {httpRenderAllPats}
+module.exports = {httpRenderPats}

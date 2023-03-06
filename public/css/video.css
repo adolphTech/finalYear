@@ -1,0 +1,58 @@
+/* flip video horizontally */
+video {
+  transform: scaleX(-1);
+}
+
+  /*  */
+
+    
+  #video-container {
+    display: flex !important ;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap:20px;
+
+  }
+  
+ 
+  
+  #mute-button,#leave-room-button{
+    border: none !important;
+    outline: none !important;
+    background-color: brown;
+    /* background: transparent; */
+    cursor: pointer;
+    
+    width: 40px;
+  }
+
+
+  #buttons-container {
+    display: flex;
+    justify-content: center;
+    visibility: hidden;
+  }
+  
+  #buttons-container button:first-child {
+    margin-right: 10px; /* adjust this value as needed */
+  }
+  
+  #buttons-container button:last-child {
+    margin-left: 10px; /* adjust this value as needed */
+  }
+  
+
+  
+  
+   
+   
+    
+ 
+   
+    
+   
+    
+  
+  
+    

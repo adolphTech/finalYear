@@ -8,22 +8,29 @@ const User = require("../../../models/users/patients/patients.model");
 // api 
 // todo:error for no pdoc
 
+// fetches only patients for a specific doctor
+
 async function httpAllpatientsForDoc(req,res){
   try {
      
-  //   if(!req.query.doc){
+    if(!req.query.doc){
       
-  //     res.send("user is equired for this")
+      res.send("user is equired for this")
     
-  //   }else{
-  //     const doc = req.query.doc
-  //   const appointments = await Appointment.find({patient})
-  //   res.send(appointments);
+    }else{
+      const doc = req.query.doc
+      // console.log(doc)
 
-  //   
+      const patients = await User.find({doctor:doc})
+      .populate('doctor')
+      .exec();
+      res.send(patients)
+
+    
+
+    }
  
-  const patients = await User.find({})
-  res.send(patients)
+ 
 
 
 }catch (e) {
@@ -66,9 +73,11 @@ async function renderPatientRegisterPage(req, res) {
 
 //register handler
 async function httpRegisterPatient(req, res) {
-  // console.log(req.body);
-  // return;
-  const { name, email, password, password2, contact, dob, gender } = req.body;
+  
+  const doctor_id = req.user._id
+  console.log(doctor_id)
+
+  const { name, email, password,contact, dob, gender } = req.body;
   let errors = [];
 
   //check required fields
@@ -76,17 +85,11 @@ async function httpRegisterPatient(req, res) {
     !name ||
     !email ||
     !password ||
-    !password2 ||
     !contact ||
     !dob ||
     !gender
   ) {
     errors.push({ msg: "please fill in all fields" });
-  }
-
-  //check password match
-  if (password !== password2) {
-    errors.push({ msg: "passwords do not match" });
   }
 
   //check password length
@@ -100,7 +103,6 @@ async function httpRegisterPatient(req, res) {
       name,
       email,
       password,
-      password2,
       contact,
       dob,
       gender,
@@ -122,7 +124,7 @@ async function httpRegisterPatient(req, res) {
           gender,
         });
       } else {
-        const doctor = req.user.name;
+        
 
         //generate patient  ID
         const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -144,7 +146,7 @@ async function httpRegisterPatient(req, res) {
           email,
           password,
           contact,
-          doctor,
+          doctor:doctor_id,
           dob,
           gender,
           patientId,
@@ -264,7 +266,7 @@ async function httpUserRegister(req, res) {
                   "success_msg",
                   "You are now registered and can log in"
                 );
-                res.redirect("docs/login");
+                res.redirect("/docs/login");
               })
               .catch((err) => console.log(err));
           });

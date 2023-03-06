@@ -12,11 +12,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "agora-react-uikit": "^1.2.0",
     "axios": "^1.2.6",
     "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "create-vite": "^4.1.0",
     "crypto-js": "^4.1.1",
     "datatables.net": "^1.13.2",
     "dialogflow-fulfillment": "^0.6.1",
@@ -27,9 +29,12 @@
     "handlebars": "^4.7.7",
     "hbs": "^4.2.0",
     "mongoose": "^6.9.1",
+    "node-dev": "^8.0.0",
     "nodemon": "^2.0.20",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
+    "twilio": "^4.7.2",
+    "uuid": "^9.0.0",
     "validator": "^13.9.0"
   },
   "devDependencies": {

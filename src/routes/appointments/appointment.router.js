@@ -14,7 +14,7 @@ const appointmentRouter = express.Router();
 
 appointmentRouter.post("/", httpAddAppointment);
 appointmentRouter.get("/", httpFetchAppointment);
-appointmentRouter.get("/doc", httpRenderDoctorsAppointments);
+appointmentRouter.get("/doc",ensureAuthenticated, httpRenderDoctorsAppointments);
 appointmentRouter.get("/pat",httpFetchSpecPatientAppointment)
 appointmentRouter.get("/patients",ensureAuthenticated,httpRenderPatientAppointments)
 

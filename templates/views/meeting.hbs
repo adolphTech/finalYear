@@ -1,0 +1,155 @@
+  {{!--
+  <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Twilio Video Demo</title>
+    <!-- Twilio Video CDN -->
+    <script src="https://sdk.twilio.com/js/video/releases/2.15.2/twilio-video.min.js"></script>
+    <link rel="stylesheet" href="/css/video.css">
+  </head>
+  <body>
+    
+    
+    <form id="room-name-form">
+      Enter a Room Name to join: <input name="room_name" id="room-name-input" />
+      <button type="submit">Join Room</button>
+    </form>
+
+
+    <div id="video-container" style="display: flex;">
+
+    </div>
+    <script src="/js/mainVideo.js"></script>
+  </body>
+</html>  --}}
+
+
+ 
+
+ {{> head}}
+
+ <style>
+  
+#form-container{
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+    background-color: #262625;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+#form__container__header {
+    border-radius: 10px 10px 0 0;
+    padding: 30px;
+    text-align: center;
+    background-color: #363739;
+    margin: 0;
+    font-size: 18px;
+    font-size: 300;
+    line-height: 0;
+  }
+
+  #form__content__wrapper{
+    padding: 20px;
+}
+
+input {
+    box-sizing: border-box;
+    color: #fff;
+    width: 100%;
+    margin: 0;
+    border: none;
+    border-radius: 5px;
+    padding: 16px 20px;
+    font-size: 15px;
+    background-color: #3f434a;
+    margin-top: 32px;
+  }
+ 
+ 
+  input[type='submit'] {
+    background-color: #8b173b;
+ 
+  }
+    </style>
+
+
+<body class="row">
+
+
+  <!-- start of nav bar -->
+
+  {{> navBar}}
+
+  <!-- end of navbar -->
+
+
+  <!-- start of side bar -->
+  {{> sidebar}}
+  
+  <!-- end of side bar -->
+ 
+  <!-- start of page content -->
+  <div class="col-sm-6 pt-2 mt-3  " style="padding-left: 20px;">
+   
+                       {{> messages }}
+    
+    
+    {{!-- <form id="room-name-form">
+      Enter a Room Name to join: <input name="room_name" id="room-name-input" />
+      <button type="submit">Join Room</button>
+    </form> --}}
+   
+
+    <main id="lobby-container">
+        <div id="form-container">
+            <div id="form__container__header">
+                <p class="" style="color:#ffffff">👋  Join a Room</p>
+            </div>
+
+            <div id="form__content__wrapper">
+                <form id="room-name-form">
+                    <input type="text" name="room_name" id="room-name-input"/>
+                     <input type="submit" value="Join Room" />
+                </form>
+            </div>
+        </div>
+    </main>
+   
+
+      <div class="row" style="display: flex; flex-direction: column; justify-content: space-between;">
+        <div id="video-container" class="col-sm-6 flex-container "> 
+ 
+        </div>
+        
+         <div id="buttons-container" class="" style="display:;" >
+         <button class="border rounded-circle border-5" id="mute-button" style="height:60px;width:60px;" data-bs-toggle="tooltip" data-bs-placement="top" title="Mute/Unmute"><span style='font-size: 1.9em; color:dodgerblue;'>
+      <i class='fa-solid fa-microphone unmuted'></i>
+    </span></button>  
+
+        <button class="border rounded-circle border-5 " id="leave-room-button" style="height:60px;width:60px;" data-bs-toggle="tooltip" data-bs-placement="top" title="Leave meeting"><span style="font-size: 2em; color:rgb(255, 255, 255)"><i class="fa-solid fa-arrow-right-from-bracket"></i></span></button>
+
+ 
+    
+    </div>
+      </div>
+    
+    
+    
+
+  </div>
+
+
+  <!-- end of page  content -->
+
+
+
+ 
+
+<script src="/js/mainVideo.js"></script>
+  {{> footer}}
