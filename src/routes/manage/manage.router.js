@@ -2,17 +2,17 @@ const express = require("express");
 
 
 
-const {ensureAuthenticated} = require("../../middlewares/auth")
+const { ensureAuthenticated, ensureDoctorAuthenticated } = require("../../middlewares/auth")
 
 
-const {httpRenderPats,}= require("./manage.controller");
+const { httpRenderPats, } = require("./manage.controller");
 
 
 const patManageRouter = express.Router();
 
-patManageRouter.get("/",ensureAuthenticated,httpRenderPats);
+patManageRouter.get("/", ensureAuthenticated, ensureDoctorAuthenticated, httpRenderPats);
 
 
 
 
-module.exports = patManageRouter; 
+module.exports = patManageRouter;

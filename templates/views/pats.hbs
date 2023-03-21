@@ -1,5 +1,4 @@
-
-  
+{{!-- todo: add a video call on the patient manage home --}}
 
 
 {{> head}}
@@ -21,16 +20,17 @@
   <!-- end of side bar -->
  
   <!-- start of page content -->
+  
   <div class="col-sm-8 pt-2 mt-3  " style="">
-    
-                       {{> messages }}
+      
+   {{> messages }}           
     <nav class="navbar navbar-expand-sm bg-dark container-fluid">
 
-   <p class="text-white p-1 fs-5">APPOINTMENTS  <span> Dr.{{appointments.appointmentNumber}}</p></span>
+   <p class="text-white p-1 fs-5">Patients </p></span>
   
  </nav>
    
-   
+
    <div class="bg-white p-3  pt-4 ">
   <table id="allpat-table" class="table  table-responsive   table-striped  table-bordered">
   <thead>
@@ -62,7 +62,7 @@
             </span>
             </button>
 
-        <button class='btn btn-link btn-sm ' data-bs-toggle='modal tooltip' data-bs-target="#exampleModal" data-bs-placement="top" title="Add Appointment" style="">
+        <button class='btn btn-link btn-sm ' id="appButton" data-bs-toggle='modal tooltip' data-bs-target="#exampleModal" data-bs-placement="top" title="Add Appointment" style="">
             <span style="font-size: 1.2em; color:;">
                   <i class="fa-solid fa-calendar-check"></i>
             </span>
@@ -79,6 +79,8 @@
 </div>
 <!-- Modal -->
 {{>addPrescription.modal}}
+
+{{>doc.appointment.modal}}
   </div>
 
  

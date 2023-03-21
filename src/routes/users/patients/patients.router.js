@@ -1,6 +1,6 @@
 const express = require("express");
 
-const {ensureAuthenticated} = require("../../../middlewares/auth")
+const { ensureAuthenticated } = require("../../../middlewares/auth")
 
 const {
     renderLoginPage,
@@ -15,14 +15,14 @@ const usersRouter = express.Router();
 
 // pages
 
-usersRouter.get("/me",ensureAuthenticated,httpMyAccount)
+usersRouter.get("/me", ensureAuthenticated, httpMyAccount)
 
 
-usersRouter.get("/login",renderLoginPage);
+usersRouter.get("/login", renderLoginPage);
 
 
-usersRouter.post("/login",httpUserLogin);
-usersRouter.get("/logout",httpUserLogout);
+usersRouter.post("/login", httpUserLogin);
+usersRouter.get("/logout", httpUserLogout);
 
 
 

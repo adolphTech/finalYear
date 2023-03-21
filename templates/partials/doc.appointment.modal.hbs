@@ -1,78 +1,92 @@
- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="appModal" tabindex="-1" aria-labelledby="appModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"> </h5>
+        <h5 class="modal-title" id="exampleModalLabel"> Add Appointment</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
-          <div class="row">
-            <div class="col-sm-6">
-              <strong>Appointment Number: {{this.appointmentNumber}}</strong>
+
+
+          <form action="/appointments" method="POST" id="appForm">
+            <div class="mb-3">
+              <div class="row">
+                <div class="col-sm-6">
+                  <strong>Patient Name:</strong>
+                </div>
+
+                <div class="col-sm-6">
+                  <span id="appPatientName"></span>
+                </div>
+
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="row">
+                <div class="col-sm-6">
+
+
+
+                  <strong>Patient Id:</strong>
+                </div>
+
+                <div class="col-sm-6">
+                  <span id="appPatientId"></span>
+                </div>
+
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="medication" class="form-label"><strong> Appointment Time:</strong></label>
+
+              <input class="form-control" type="time" id="appointment-time" name="time" min="08:00" max="17:00">
+
+            </div>
+            <div>
+
+              <label for="medication" class="form-label"><strong> Appointment Date:</strong></label>
+
+              <input type="date" class="form-control " id="date-input" name="date">
+
             </div>
 
-            <div class="col-sm-6">
-              <span id="modalAppointmentNumber"></span>
+            <div class="mb-3">
+              <input type="hidden" class="form-control" name="patientId" id="appPatientIdInput">
+
             </div>
-           
-          </div>
-          <div class="row">
-            <div class="col-sm-6">
-              <strong>Appointment Date:</strong>
+
+            <div class="mb-3">
+              <label for="description" class="form-label"><strong>Mode:</strong></label>
+
+              <select class="form-select  " name="mode" aria-label=".form-select-sm example">
+                {{!-- <option selected>Open this select menu</option> --}}
+                <option selected value="Online">Online</option>
+                <option value="Physical">Physical (In Clinic)</option>
+              </select>
             </div>
-            <div class="col-sm-6">
-              <span id="modalAppointmentDate"></span>
+
+            <div class="mb-3">
+              <label for="description" class="form-label"><strong>Appointment Description:</strong></label>
+
+              <textarea class="form-control" name="description" id="descrip" cols="2" rows="2"></textarea>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-6">
-              <strong>Appointment Time:</strong>
+
+            <div class="modal-footer">
+
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+              <button type="submit" class="btn btn-primary">Add Appointment</button>
             </div>
-            <div class="col-sm-6">
-              <span id="modalAppointmentTime"></span>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-6">
-              <strong>Patient Name:</strong>
-            </div>
-            <div class="col-sm-6">
-              <span id="modalPatientName"></span>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-6">
-              <strong>Patient Email:</strong>
-            </div>
-            <div class="col-sm-6">
-              <span id="modalPatientEmail"></span>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-6">
-              <strong>Patient Contact:</strong>
-            </div>
-            <div class="col-sm-6">
-              <span id="modalPatientContact"></span>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-6">
-              <strong>Doctor Name:</strong>
-            </div>
-            <div class="col-sm-6">
-              <span id="modalDoctorName"></span>
-            </div>
-          </div>
+          </form>
+
+
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+
+
+
+
     </div>
   </div>
-</div>   
-
-
+</div>

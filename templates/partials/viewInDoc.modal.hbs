@@ -1,0 +1,111 @@
+<div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="viewModalLabel"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+
+{{!-- todo: animate modal --}}
+          <form action="/appointments" method="POST" id="appForm">
+            <div class="mb-3">
+              <div class="row">
+                <div class="col-sm-6">
+                  <strong>Appointment Number:</strong>
+                </div>
+
+                <div class="col-sm-6">
+                  <span id="viewAppointmentNumber"></span>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <div class="row">
+                <div class="col-sm-6">
+                  <strong>Patient Name:</strong>
+                </div>
+
+                <div class="col-sm-6">
+                  <span id="viewPatientName"></span>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <div class="row">
+                <div class="col-sm-6">
+
+
+
+                  <strong>Appointment Date:</strong>
+                </div>
+
+                <div class="col-sm-6">
+                  <span id="viewAppointmentDate"></span>
+                </div>
+
+              </div>
+            </div>
+
+             <div class="mb-3">
+              <div class="row">
+                <div class="col-sm-6">
+
+
+
+                  <strong>Appointment Time:</strong>
+                </div>
+
+                <div class="col-sm-6">
+                  <span id="viewAppointmentTime"></span>
+                </div>
+
+              </div>
+            </div>
+
+
+
+            <div class="mb-3">
+              <div class="row">
+                <div class="col-sm-6">
+
+
+
+                  <strong>Patient Contact:</strong>
+                </div>
+
+                <div class="col-sm-6">
+                  <span id="viewPatientContact"></span>
+                </div>
+
+              </div>
+            </div>
+    
+
+
+
+          
+
+            <div class="modal-footer">
+
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+              <button type="submit" class="btn btn-primary">Add Appointment</button>
+            </div>
+          </form>
+
+
+        </div>
+      </div>
+
+
+
+
+    </div>
+  </div>
+</div>

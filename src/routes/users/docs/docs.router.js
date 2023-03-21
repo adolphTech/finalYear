@@ -1,6 +1,6 @@
 const express = require("express");
 
-const {ensureAuthenticated} = require("../../../middlewares/auth")
+const { ensureAuthenticated, ensureDoctorAuthenticated, ensurePatientAuthenticated } = require("../../../middlewares/auth")
 
 const {
     renderLoginPage,
@@ -20,22 +20,22 @@ const docsRouter = express.Router();
 
 // pages
 
-docsRouter.get("/me",ensureAuthenticated,httpMyAccount)
+docsRouter.get("/me", ensureAuthenticated, httpMyAccount)
 
-docsRouter.get("/pats",httpAllpatientsForDoc)
+docsRouter.get("/pats", httpAllpatientsForDoc)
 
 
-docsRouter.get("/login",renderLoginPage);
-docsRouter.get("/register",ensureAuthenticated,renderRegisterPage);
+docsRouter.get("/login", renderLoginPage);
+docsRouter.get("/register", ensureAuthenticated, renderRegisterPage);
 // 
-docsRouter.get("/addPat",ensureAuthenticated,renderPatientRegisterPage)
-docsRouter.post("/addPat",ensureAuthenticated,httpRegisterPatient)
-// 
+docsRouter.get("/addPat", ensureAuthenticated, ensureDoctorAuthenticated, renderPatientRegisterPage)
+docsRouter.post("/addPat", ensureAuthenticated, httpRegisterPatient)
+    // 
 
-docsRouter.post("/register",httpUserRegister);
+docsRouter.post("/register", httpUserRegister);
 
-docsRouter.post("/login",httpUserLogin);
-docsRouter.get("/logout",httpUserLogout);
+docsRouter.post("/login", httpUserLogin);
+docsRouter.get("/logout", httpUserLogout);
 
 
 

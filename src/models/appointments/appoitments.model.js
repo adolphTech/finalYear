@@ -14,21 +14,19 @@ const appointmentsSchema = new mongoose.Schema({
     required:true,
 
   },
-  appointmentTime:{
-    type:String,
-    required:true
-
-  },
-
   patient: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Patient'
   },
+  doctor:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Doc',
+    required:true
+
+  },
   mode:{
     type:String,
     required:true,
-    default:"online"
-
   }
 });
 

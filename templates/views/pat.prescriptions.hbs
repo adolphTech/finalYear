@@ -1,0 +1,74 @@
+{{> head}}
+
+  <link rel="stylesheet" href="/css/appointment.datatable.css">
+<body class="row">
+
+
+  <!-- start of nav bar -->
+
+  {{> navBar}}
+
+  <!-- end of navbar -->
+
+
+  <!-- start of side bar -->
+  {{> sidebar}}
+  
+  <!-- end of side bar -->
+ 
+  <!-- start of page content -->
+  <div class="col-sm-8 pt-2 mt-3  " style="">
+    <nav class="navbar navbar-expand-sm bg-dark container-fluid">
+
+   <p class="text-white p-1 fs-5">Presriptions</p></span>
+  
+ </nav>
+   
+                       {{> messages }}
+   
+   <div class="bg-white p-3  pt-4 ">
+  <table id="prescriptions-table" class="table  table-responsive   table-striped  table-bordered">
+  <thead>
+    <tr>
+      <th class="fs-6">Prescription Date.</th>
+      <th class="fs-6">Medication</th>
+      <th class="fs-6">Description</th>
+      <th class="fs-6">Doctor: Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    {{#each prescriptions}}
+    <tr>
+      <td>{{this.prescriptionDate}}</td>
+      <td class="fs-6 text-nowrap">{{this.medication}}</td>
+      <td>{{this.description}}</td>
+      <td class="fs-6 text-nowrap">{{this.doctor.name}}</td>
+      
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+</div>
+<!-- Modal -->
+{{!-- {{>doc.appointment.modal}} --}}
+  </div>
+
+ 
+
+
+  <!-- end of page  content -->
+
+
+
+
+
+  <!-- start of events rightbar -->
+  {{!-- {{> events.rightbar}} --}}
+
+  <!-- end of events bar -->
+
+
+  {{> footer}}
+
+

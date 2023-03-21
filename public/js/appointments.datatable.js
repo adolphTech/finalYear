@@ -11,17 +11,21 @@ $(document).ready(function() {
     } );
 
     // Handle click event on view button
-    $('#appointment-table tbody').on('click', 'button', function () {
+    $('#appointment-table tbody').on('click', '#viewButton', function () {
         var data = table.row( $(this).parents('tr') ).data(); // Get data from clicked row
-        $("#modalAppointmentNumber").text(data.appointmentNumber);
-        $("#modalAppointmentDate").text(data.appointmentDate);
-        $("#modalAppointmentTime").text(data.appointmentTime);
-        $('#exampleModalLabel').text(data.patientName); // Update modal title with appointment number
-        $('#modalPatientName').text(data.patientName); // Update patient name in modal
-        $('#modalPatientEmail').text(data.patientEmail); // Update patient email in modal
-        $('#modalPatientContact').text(data.patientContact); // Update patient contact in modal
-        $('#modalDoctorName').text(data.doctorName); // Update doctor name in modal
-        $('#exampleModal').modal('show'); // Show the modal
+        console.log(data)
+        $('#viewModalLabel').text(data.patientName); // Update modal title with appointment number
+
+        $("#viewAppointmentNumber").text(data.appointmentNumber);
+        $("#viewAppointmentDate").text(data.appointmentDate);
+        $("#viewAppointmentTime").text(data.appointmentTime);
+
+        $('#viewPatientName').text(data.patientName); // Update patient name in modal
+        $('#viewPatientEmail').text(data.patientEmail); // Update patient email in modal
+        $('#viewPatientContact').text(data.patientContact); // Update patient contact in modal
+
+        // $('#viewDoctorName').text(data.doctorName); // Update doctor name in modal
+        $('#viewModal').modal('show'); // Show the modal
     } );
 });
 
@@ -31,58 +35,56 @@ $(document).ready(function() {
 
 // ----------------  patients appointment table --------------------------------------//
 
+// $(document).ready(function() {
+//     var table = $('patient-table').DataTable( {
+//         columns: [
+//             { data: 'appointmentNumber' },
+//             { data: 'appointmentDate' },
+//             { data: 'appointmentTime' },
+//             { data: 'doctorName' },           
+//             { data: 'doctorContact' },
+          
+//         ]
+//     } );
+// })
+
 $(document).ready(function() {
-    var table = $('patient-table').DataTable( {
+    var table = $('#patient-table').DataTable( {
         columns: [
             { data: 'appointmentNumber' },
             { data: 'appointmentDate' },
             { data: 'appointmentTime' },
             { data: 'doctorName' },           
-            { data: 'doctorContact' },
-          
+            { data: 'doctorContact' }
         ]
     } );
-})
+
+    // // Handle click event on view button
+    // $('#appointment-table tbody').on('click', '#viewButton', function () {
+    //     var data = table.row( $(this).parents('tr') ).data(); // Get data from clicked row
+    //     console.log(data)
+    //     $('#viewModalLabel').text(data.patientName); // Update modal title with appointment number
+
+    //     $("#viewAppointmentNumber").text(data.appointmentNumber);
+    //     $("#viewAppointmentDate").text(data.appointmentDate);
+    //     $("#viewAppointmentTime").text(data.appointmentTime);
+
+    //     $('#viewPatientName').text(data.patientName); // Update patient name in modal
+    //     $('#viewPatientEmail').text(data.patientEmail); // Update patient email in modal
+    //     $('#viewPatientContact').text(data.patientContact); // Update patient contact in modal
+
+    //     // $('#viewDoctorName').text(data.doctorName); // Update doctor name in modal
+    //     $('#viewModal').modal('show'); // Show the modal
+    // } );
+});
+
+
 // ----------------  patients appointments table end --------------------------------------//
 
 
 
 // ---------------- all patients table --------------------------------------//
 
-// $(document).ready(function() {
-//     var table = $('#allpat-table').DataTable( {
-//         columns: [
-//             { data: 'patientId' },
-//             { data: 'patientName' },
-//             { data: 'patientEmail' },
-//             { data: 'patientContact' },           
-//             { data: 'patientGendert' },
-            
-//             { data: 'action' }
-//         ]
-//     } );
-
-//     // Handle click event on view button
-//     $('#allpat-table tbody').on('click', '#prescButton', function () {
-//         var data = table.row( $(this).parents('tr') ).data(); // Get data from clicked row
-       
-//         $('#prescModalLabel').text(data.patientName); // Update modal title with appointment number
-//         $('#modalPatientName').text(data.patientName); // Update patient name in modal
-//         $('#modalPatientId').text(data.patientId)
-//         $('#prescModal').modal('show'); // Show the modal
-//     } );
-
-
-//     // hiden id input
-//     $('#prescModal').on('show.bs.modal', function(event) {
-//         var button = $(event.relatedTarget);
-//         var patientId = button.data('bs-patientid');
-//         var modal = $(this);
-//         modal.find('#modalPatientIdInput').val(patientId);
-//         modal.find('#modalPatientName').text(button.closest('tr').find('td:eq(1)').text());
-//       });
-      
-// });
 
 
 $(document).ready(function() {
@@ -92,27 +94,81 @@ $(document).ready(function() {
             { data: 'patientName' },
             { data: 'patientEmail' },
             { data: 'patientContact' },           
-            { data: 'patientGendert' },
+            { data: 'patientGender' },
             
             { data: 'action' }
         ]
     } );
 
-    // Handle click event on view button
+    $('#allpat-table tbody').on('click', '#appButton', function () {
+        var data = table.row( $(this).parents('tr') ).data(); // Get data from clicked row
+        console.log(data)
+
+                // Set the value of the hidden input element to the patient ID
+                const appPatientIdInput= document.querySelector('#appPatientIdInput'); 
+                appPatientIdInput.value = data.patientId;
+                console.log(appPatientIdInput)
+
+        $('#appModalLabel').text(data.patientName); 
+        $('#appPatientName').text(data.patientName); // Update patient name in modal
+
+        $('#appPatientId').text(data.patientId)
+        $('#appPatientId').val(data.patientId); // Set patient ID in hidden input
+        $('#appModal').modal('show'); // Show the modal
+    } );
+
+    // Handle click event on prescription button
+
     $('#allpat-table tbody').on('click', '#prescButton', function () {
         var data = table.row( $(this).parents('tr') ).data(); // Get data from clicked row
        
+
+                // Set the value of the hidden input element to the patient ID
+                const modalPatientIdInput = document.querySelector('#modalPatientIdInput');
+                modalPatientIdInput.value = data.patientId;
+                // console.log(modalPatientIdInput)
+
         $('#prescModalLabel').text(data.patientName); // Update modal title with appointment number
         $('#modalPatientName').text(data.patientName); // Update patient name in modal
+
+        $('#modalPatientId').text(data.patientId)
         $('#modalPatientId').val(data.patientId); // Set patient ID in hidden input
         $('#prescModal').modal('show'); // Show the modal
     } );
 });
 
-// ---------------- all patients table end--------------------------------------//
+// ---------------- all patients table  end--------------------------------------//
+
+
+
+// ---------------- prescriptions table  --------------------------------------//
+
+$(document).ready(function() {
+    var table = $('#prescriptions-table').DataTable( {
+        columns: [
+            { data: 'prescriptionDate' },
+            { data: 'medication' },
+            { data: 'description' },
+            { data: 'doctorName' }
+        ]
+    } );
+
+
+});
+
+// ---------------- prescriptions table  end--------------------------------------//
 
 
 
 
 
+   
 
+
+
+  
+
+
+
+
+  

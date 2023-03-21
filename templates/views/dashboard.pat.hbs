@@ -1,0 +1,41 @@
+{{> head}}
+
+<body class="row">
+
+
+  <!-- start of nav bar -->
+
+  {{> navBar}}
+
+  <!-- end of navbar -->
+
+
+  <!-- start of side bar -->
+  {{> sidebar}}
+  
+  <!-- end of side bar -->
+ 
+  <!-- start of page content -->
+  <div class="col-sm-6 pt-2 mt-3  " style="padding-left: 20px;">
+   
+                       {{> messages }}
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius eum repellendus dolores vitae obcaecati,
+      beatae labore illo, numquam nostrum alias ipsa asperiores corrupti est, aut quidem sint fuga nam ullam.</p>
+
+  </div>
+
+  <link rel="stylesheet" href="/css/vanillaCalendar.css">
+
+  <!-- end of page  content -->
+
+
+
+
+
+  <!-- start of events rightbar -->
+  {{> events.rightbar}}
+
+  <!-- end of events bar -->
+
+
+  {{> footer}}

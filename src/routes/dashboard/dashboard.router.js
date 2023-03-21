@@ -2,15 +2,18 @@ const express = require("express");
 
 
 
-const {ensureAuthenticated} = require("../../middlewares/auth")
+const { ensureAuthenticated, ensureDoctorAuthenticated, ensurePatientAuthenticated } = require("../../middlewares/auth")
 
 
-const {httpRenderDashboard,}= require("./dashboard.controller");
+const { httpRenderDocDashboard, httpRenderPatDashboard, httpRenderHome } = require("./dashboard.controller");
 
 
 const dashboardRouter = express.Router();
 
-dashboardRouter.get("/",ensureAuthenticated,httpRenderDashboard);
+dashboardRouter.get("/doctor", ensureAuthenticated, ensureDoctorAuthenticated, httpRenderDocDashboard);
+dashboardRouter.get("/patient", ensureAuthenticated, ensurePatientAuthenticated, httpRenderPatDashboard);
+dashboardRouter.get("/", httpRenderHome)
+
 // dashboardRouter.get("/table",renderTable)
 
 

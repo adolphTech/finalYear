@@ -2,15 +2,18 @@ const express = require("express");
 
 
 
-const {ensureAuthenticated} = require("../../middlewares/auth")
+const { ensureAuthenticated, ensurePatientAuthenticated } = require("../../middlewares/auth")
 
 
-const {addPrescription,} = require("./prescriptions.controller");
+const { addPrescription, httpFetchPrescriptions, httpRenderPatientPrescription } = require("./prescriptions.controller");
 
 
 const prescriptionRouter = express.Router();
 
-prescriptionRouter.post("/",addPrescription);
+prescriptionRouter.post("/", addPrescription);
+prescriptionRouter.get("/", httpFetchPrescriptions);
+prescriptionRouter.get("/pat", ensureAuthenticated, ensurePatientAuthenticated, httpRenderPatientPrescription);
+
 
 
 

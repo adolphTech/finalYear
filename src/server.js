@@ -21,3 +21,7 @@ server.listen(PORT,async()=>{
 
     console.log(`server is listening on port ${PORT} and it took ${timeTakenToConnectDb} seconds to connect to the db`)
 })
+
+
+
+// TODO: create my profile --patient can update their data

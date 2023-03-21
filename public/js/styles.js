@@ -29,22 +29,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 let hidden = false;
 
-document.getElementById("clickHide").addEventListener("click",()=>{  
+// document.getElementById("clickHide").addEventListener("click",()=>{  
 
-    var calendar = document.getElementById("calendar");
-    if ( calendar.classList.contains("hidden")) {
-        calendar.classList.remove("hidden");
-        console.log("The element has the class 'hidden'");
-      } else {
-       calendar.classList.add("hidden");
-        console.log("The element does not have the class 'hidden'");
-      }
+//     var calendar = document.getElementById("calendar");
+//     if ( calendar.classList.contains("hidden")) {
+//         calendar.classList.remove("hidden");
+//         console.log("The element has the class 'hidden'");
+//       } else {
+//        calendar.classList.add("hidden");
+//         console.log("The element does not have the class 'hidden'");
+//       }
 
 
 
    
     
-})
+// })
 
 document.getElementById("hideEvents").addEventListener("click",()=>{  
 

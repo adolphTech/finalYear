@@ -12,7 +12,7 @@
 
 
   <!-- start of side bar -->
-  {{> sidebar}}
+  {{> sidebar}} 
   
   <!-- end of side bar -->
  
@@ -20,7 +20,7 @@
   <div class="col-sm-8 pt-2 mt-3  " style="">
     <nav class="navbar navbar-expand-sm bg-dark container-fluid">
 
-   <p class="text-white p-1 fs-5">APPOINTMENTS  <span> Dr.{{appointments.appointmentNumber}}</p></span>
+   <p class="text-white p-1 fs-5">APPOINTMENTS </span>
   
  </nav>
    
@@ -48,7 +48,7 @@
       <td class="fs-6 text-nowrap">{{this.patient.name}}</td>
       <td class="fs-6">{{this.patient.contact}}</td>
       
-      <td class="fs-6"><button  class='btn btn-link btn-sm' data-bs-toggle='modal' data-bs-target="#exampleModal"><i class='fa-solid fa-eye'></i></button></td>
+      <td class="fs-6"><button  class='btn btn-link btn-sm' id="viewButton" data-bs-toggle='modal' data-bs-target="#viewModal"><i class='fa-solid fa-eye'></i></button></td>
        
      
     </tr>
@@ -57,7 +57,9 @@
 </table>
 </div>
 <!-- Modal -->
-{{>doc.appointment.modal}}
+{{!-- {{>doc.appointment.modal}} --}}
+
+{{>viewInDoc.modal}}
   </div>
 
  
