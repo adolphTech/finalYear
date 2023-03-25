@@ -1,32 +1,28 @@
 $(document).ready(function() {
-    var table = $('#appointment-table').DataTable( {
+    var table = $('#doc-appointment-table').DataTable({
         columns: [
             { data: 'appointmentNumber' },
             { data: 'appointmentDate' },
             { data: 'appointmentTime' },
-            { data: 'patientName' },           
+            { data: 'patientName' },
             { data: 'patientContact' },
             { data: 'view' }
         ]
-    } );
+    });
 
     // Handle click event on view button
-    $('#appointment-table tbody').on('click', '#viewButton', function () {
-        var data = table.row( $(this).parents('tr') ).data(); // Get data from clicked row
-        console.log(data)
-        $('#viewModalLabel').text(data.patientName); // Update modal title with appointment number
+    $('#doc-appointment-table tbody').on('click', '#startMeeting', function() {
+        // var data = table.row($(this).parents('tr')).data(); // Get data from clicked row
+        // console.log(data);
 
-        $("#viewAppointmentNumber").text(data.appointmentNumber);
-        $("#viewAppointmentDate").text(data.appointmentDate);
-        $("#viewAppointmentTime").text(data.appointmentTime);
+        var regNumber = $(this).closest('tr').data('reg-number'); // Get registration number from data attribute
 
-        $('#viewPatientName').text(data.patientName); // Update patient name in modal
-        $('#viewPatientEmail').text(data.patientEmail); // Update patient email in modal
-        $('#viewPatientContact').text(data.patientContact); // Update patient contact in modal
+        console.log(regNumber);
 
-        // $('#viewDoctorName').text(data.doctorName); // Update doctor name in modal
-        $('#viewModal').modal('show'); // Show the modal
-    } );
+        // Redirect user to "/meeting" page
+        window.location.href = `/meeting?id=${regNumber}`;
+
+    });
 });
 
 // ----------------  doctor appointments table table --------------------------------------//
@@ -35,29 +31,17 @@ $(document).ready(function() {
 
 // ----------------  patients appointment table --------------------------------------//
 
-// $(document).ready(function() {
-//     var table = $('patient-table').DataTable( {
-//         columns: [
-//             { data: 'appointmentNumber' },
-//             { data: 'appointmentDate' },
-//             { data: 'appointmentTime' },
-//             { data: 'doctorName' },           
-//             { data: 'doctorContact' },
-          
-//         ]
-//     } );
-// })
 
 $(document).ready(function() {
-    var table = $('#patient-table').DataTable( {
+    var table = $('#patient-table').DataTable({
         columns: [
             { data: 'appointmentNumber' },
             { data: 'appointmentDate' },
             { data: 'appointmentTime' },
-            { data: 'doctorName' },           
+            { data: 'doctorName' },
             { data: 'doctorContact' }
         ]
-    } );
+    });
 
     // // Handle click event on view button
     // $('#appointment-table tbody').on('click', '#viewButton', function () {
@@ -88,45 +72,49 @@ $(document).ready(function() {
 
 
 $(document).ready(function() {
-    var table = $('#allpat-table').DataTable( {
+    var table = $('#allpat-table').DataTable({
         columns: [
             { data: 'patientId' },
             { data: 'patientName' },
             { data: 'patientEmail' },
-            { data: 'patientContact' },           
+            { data: 'patientContact' },
             { data: 'patientGender' },
-            
+
             { data: 'action' }
         ]
-    } );
+    });
 
-    $('#allpat-table tbody').on('click', '#appButton', function () {
-        var data = table.row( $(this).parents('tr') ).data(); // Get data from clicked row
+    $('#allpat-table tbody').on('click', '#appButton', function() {
+        var data = table.row($(this).parents('tr')).data(); // Get data from clicked row
         console.log(data)
 
-                // Set the value of the hidden input element to the patient ID
-                const appPatientIdInput= document.querySelector('#appPatientIdInput'); 
-                appPatientIdInput.value = data.patientId;
-                console.log(appPatientIdInput)
+        // Set the value of the hidden input element to the patient ID
+        const appPatientIdInput = document.querySelector('#appPatientIdInput');
+        appPatientIdInput.value = data.patientId;
+        console.log(appPatientIdInput)
 
-        $('#appModalLabel').text(data.patientName); 
+        $('#appModalLabel').text(data.patientName);
         $('#appPatientName').text(data.patientName); // Update patient name in modal
+        $("#appPatientEmail").text(data.patientEmail)
+        $("#appPatientEmail").val(data.patientEmail);
 
         $('#appPatientId').text(data.patientId)
         $('#appPatientId').val(data.patientId); // Set patient ID in hidden input
         $('#appModal').modal('show'); // Show the modal
-    } );
+    });
 
     // Handle click event on prescription button
 
-    $('#allpat-table tbody').on('click', '#prescButton', function () {
-        var data = table.row( $(this).parents('tr') ).data(); // Get data from clicked row
-       
+    $('#allpat-table tbody').on('click', '#prescButton', function() {
+        var data = table.row($(this).parents('tr')).data(); // Get data from clicked row
 
-                // Set the value of the hidden input element to the patient ID
-                const modalPatientIdInput = document.querySelector('#modalPatientIdInput');
-                modalPatientIdInput.value = data.patientId;
-                // console.log(modalPatientIdInput)
+        console.log(data)
+
+
+        // Set the value of the hidden input element to the patient ID
+        const modalPatientIdInput = document.querySelector('#modalPatientIdInput');
+        modalPatientIdInput.value = data.patientId;
+        // console.log(modalPatientIdInput)
 
         $('#prescModalLabel').text(data.patientName); // Update modal title with appointment number
         $('#modalPatientName').text(data.patientName); // Update patient name in modal
@@ -134,7 +122,7 @@ $(document).ready(function() {
         $('#modalPatientId').text(data.patientId)
         $('#modalPatientId').val(data.patientId); // Set patient ID in hidden input
         $('#prescModal').modal('show'); // Show the modal
-    } );
+    });
 });
 
 // ---------------- all patients table  end--------------------------------------//
@@ -144,31 +132,16 @@ $(document).ready(function() {
 // ---------------- prescriptions table  --------------------------------------//
 
 $(document).ready(function() {
-    var table = $('#prescriptions-table').DataTable( {
+    var table = $('#prescriptions-table').DataTable({
         columns: [
             { data: 'prescriptionDate' },
             { data: 'medication' },
             { data: 'description' },
             { data: 'doctorName' }
         ]
-    } );
+    });
 
 
 });
 
 // ---------------- prescriptions table  end--------------------------------------//
-
-
-
-
-
-   
-
-
-
-  
-
-
-
-
-  

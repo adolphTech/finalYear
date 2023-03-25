@@ -1,4 +1,4 @@
-body{
+body {
     background-color: #E5E7EB;
     overflow: hidden;
 }
@@ -9,18 +9,24 @@ nav {
     margin-left: 20px;
 }
 
-img{
+img {
     padding-left: 15px;
 }
 
-.tog-button{
+.tog-button {
     margin-right: 15px;
 }
 
+
 /* remove border in tooggler */
-.navbar-toggler  {  border: none;  }
+
+.navbar-toggler {
+    border: none;
+}
+
 
 /* remove border on click */
+
 .navbar-toggler:focus,
 .navbar-toggler:active,
 .navbar-toggler-icon:focus {
@@ -30,8 +36,6 @@ img{
 
 
 /* .................................SIDE BAR........................ */
-
-
 
 .sidebar {
     height: 100%;
@@ -44,57 +48,72 @@ img{
     overflow-x: hidden;
     transition: 0.5s;
     margin-top: 130px;
-  }
-  
-  .sidebar a {
+}
+
+.sidebar a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 12.8 px;
     color: #818181;
     display: block;
     transition: 0;
-  }
-  
-  .sidebar a:hover {
+}
+
+.sidebar a:hover {
     background-color: #8b173b;
     color: #f1f1f1;
-  }
-  
+}
 
-  
-  
-  
-  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-  @media screen and (max-height: 450px) {
-    
-    .sidebar {padding-top: 15px;}
-    .sidebar a {font-size: 18px;}
-  
-  }
- 
-  /* make side nav on large devices */
-  @media screen and (min-width: 990px) {
-    
-  #mySidebar{width: 250px;}
-  .sidebar {margin-left: 25px;}
-    
-  }
 
-  @media screen and (max-width: 990px) {
-    
-    #mySidebar{width: 0px;}
-    .sidebar{transition: 0.2s;}
+/* .active {
+    background-color: #8b173b;
+    color: #f1f1f1;
+} */
 
-      
+
+/* .sidebar-link.active {
+    background-color: red;
+} */
+
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+
+@media screen and (max-height: 450px) {
+    .sidebar {
+        padding-top: 15px;
     }
- 
- 
+    .sidebar a {
+        font-size: 18px;
+    }
+}
 
+
+/* make side nav on large devices */
+
+@media screen and (min-width: 990px) {
+    #mySidebar {
+        width: 250px;
+    }
+    .sidebar {
+        margin-left: 25px;
+    }
+}
+
+@media screen and (max-width: 990px) {
+    #mySidebar {
+        width: 0px;
+    }
+    .sidebar {
+        transition: 0.2s;
+    }
+}
 
 
 /* .................................SIDE BAR........................ */
 
+
 /* .................................events BAR........................ */
+
 .eventsbar {
     height: 100%;
     width: 270px;
@@ -106,55 +125,59 @@ img{
     overflow-x: hidden;
     transition: 0.5s;
     margin-top: 130px;
-  }
-  
-  .eventsbar a {
+}
+
+.eventsbar a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 12.8 px;
     color: #818181;
     display: block;
     transition: 0;
-  }
-  
-  /* .eventsbar a:hover {
+}
+
+
+/* .eventsbar a:hover {
     background-color: #8b173b;
     color: #f1f1f1;
   } */
-  
 
-  
-  
-  
-  /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-  @media screen and (max-height: 450px) {
-    
-    .sidebar {padding-top: 15px;}
-    .sidebar a {font-size: 18px;}
-  
-  }
- 
-  /* make side nav on large devices */
-  @media screen and (min-width: 990px) {
-    
-  #myEventsbar{width: 270px;}
-  .eventsbar {margin-right: 25px;}
-    
-  }
 
-  @media screen and (max-width: 990px) {
-    
-    #myEventsbar{width: 0px;}
-    .eventsbar{transition: 0.2s;}
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 
-      
+@media screen and (max-height: 450px) {
+    .sidebar {
+        padding-top: 15px;
     }
+    .sidebar a {
+        font-size: 18px;
+    }
+}
 
-  .hidden{
+
+/* make side nav on large devices */
+
+@media screen and (min-width: 990px) {
+    #myEventsbar {
+        width: 270px;
+    }
+    .eventsbar {
+        margin-right: 25px;
+    }
+}
+
+@media screen and (max-width: 990px) {
+    #myEventsbar {
+        width: 0px;
+    }
+    .eventsbar {
+        transition: 0.2s;
+    }
+}
+
+.hidden {
     display: none;
-  }
-  
-  
+}
 
 
 /* .................................events BAR........................ */

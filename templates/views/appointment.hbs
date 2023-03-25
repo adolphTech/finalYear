@@ -27,7 +27,7 @@
                        {{> messages }}
    
    <div class="bg-white p-3  pt-4 ">
-  <table id="appointment-table" class="table  table-responsive   table-striped  table-bordered">
+  <table id="doc-appointment-table" class="table  table-responsive   table-striped  table-bordered">
   <thead>
     <tr>
       <th class="fs-6">No</th>
@@ -35,20 +35,28 @@
       <th class="fs-6">Time</th>
       <th class="fs-6"> Name</th>
       <th class="fs-6"> Contact</th>
-       <th>view</th>
+       <th>Start meeting</th>
     </tr>
   </thead>
   <tbody>
     
     {{#each appointments}}
-    <tr>
+    <tr  data-reg-number="{{this.patient.patientId}}">
+
       <td>{{this.appointmentNumber}}</td>
       <td class="fs-6 text-nowrap">{{this.appointmentDate}}</td>
       <td>{{this.appointmentTime}}</td>
-      <td class="fs-6 text-nowrap">{{this.patient.name}}</td>
+      <td class="fs-6 text-nowrap" >{{this.patient.name}}</td>
       <td class="fs-6">{{this.patient.contact}}</td>
       
-      <td class="fs-6"><button  class='btn btn-link btn-sm' id="viewButton" data-bs-toggle='modal' data-bs-target="#viewModal"><i class='fa-solid fa-eye'></i></button></td>
+      <td class="fs-6">
+      
+         <button class="btn btn-link btn-sm" id="startMeeting"  data-bs-target="modal tooltip" data-bs-placement="top" title="Start Meeting" style="">
+         <span style="font-size: 1.2em">
+          <i class="fa-solid fa-video"></i>
+         </span>
+        </button>
+        </td>
        
      
     </tr>

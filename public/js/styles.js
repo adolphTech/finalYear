@@ -1,25 +1,26 @@
 // toggle side bar 
 let toggleSide = false;
-function openNav(){
+
+function openNav() {
     document.getElementById("mySidebar").style.width = "250px"
-    toggleSide=true;
+    toggleSide = true;
 
 }
 
-function closeNav(){
+function closeNav() {
     document.getElementById("mySidebar").style.width = "0"
     toggleSide = false;
 
 }
 
- const sidebarToggler = document.getElementById("sidebarToggler");
+const sidebarToggler = document.getElementById("sidebarToggler");
 
- sidebarToggler.addEventListener("click",()=>{
-   
-   !toggleSide ? openNav() : closeNav()
+sidebarToggler.addEventListener("click", () => {
 
- })
-// navbar toggle
+        !toggleSide ? openNav() : closeNav()
+
+    })
+    // navbar toggle
 
 // calendar
 document.addEventListener('DOMContentLoaded', () => {
@@ -42,24 +43,23 @@ let hidden = false;
 
 
 
-   
-    
+
+
 // })
 
-document.getElementById("hideEvents").addEventListener("click",()=>{  
+document.getElementById("hideEvents").addEventListener("click", () => {
 
     const events = document.getElementById("events");
-    if ( events.classList.contains("hidden")) {
+    if (events.classList.contains("hidden")) {
         events.classList.remove("hidden");
         console.log("The element has the class 'hidden'");
-      } else {
-       events.classList.add("hidden");
+    } else {
+        events.classList.add("hidden");
         console.log("The element does not have the class 'hidden'");
-      }   
-    
+    }
+
 })
 
 
 
 // calendar
-

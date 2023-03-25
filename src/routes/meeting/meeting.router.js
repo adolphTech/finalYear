@@ -10,7 +10,7 @@ const meetingRouter = express.Router();
 
 meetingRouter.post("/", httpTwilio);
 meetingRouter.get("/", ensureAuthenticated, renderMeeting)
-meetingRouter.post("/mail", ensureAuthenticated, sendMail)
+meetingRouter.post("/mail", sendMail)
 meetingRouter.post("/sms", sendSms)
 
 

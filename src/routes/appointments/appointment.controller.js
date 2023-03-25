@@ -74,52 +74,27 @@ async function httpRenderPatientAppointments(req, res) {
 
 }
 
-// todo: make appointment id to be 5 digits
-
-// async function httpAddAppointment(req, res) {
-
-//   try {
-//     // const doctor_id = req.user.id;
-//     const doctor_id = "63e8b36fd60ae343737f85af";
-//     // const patient_id = "63e95206fc0f609601c638d4";
-//     const patient_id ="63ee024db00d558eed83e5a4"
-
-//     const appointmentCount = await Appointment.countDocuments({
-//       doctor: doctor_id,
-//     });
-//     const { date, time } = req.body;
-//     const appointmentDate = new Date(date);
-
-//     const newAppointment = new Appointment({
-//       appointmentNumber: appointmentCount + 1,
-//       appointmentDate,
-//       patient: patient_id,
-//       appointmentTime: time,
-//     });
-
-//     console.log(newAppointment);
-
-//     await newAppointment.save();
-//     res.status(201).send(newAppointment);
-//   } catch (e) {
-//     res.status(500).send(e);
-//   }
-// }
 
 async function httpAddAppointment(req, res) {
     try {
         const doctor_id = req.user._id;
         const userInputDate = req.body.date;
-        const userInputTime = req.body.time;
+        const userInputTime = req.body.time;;
         const mode = req.body.mode;
-
+        // console.log(req.body)
         const patientId = req.body.patientId
+        const patientEmail = req.body.patientEmail;
+
+
 
         // combine the date and time strings into a single ISO string
         const isoString = `${userInputDate}T${userInputTime}`;
 
-        // create a new Date object from the ISO string
-        const jsDate = new Date(isoString);
+
+        const jsDate = new Date(isoString); // create new Date object with parsed time value in UTC
+        const kenyaOffset = 180; // timezone offset in minutes for Kenya Standard Time (UTC+3)
+        const localDate = new Date(jsDate.getTime() + (kenyaOffset * 60 * 1000)); // adjust time value to local timezone
+
 
         // verify that the Date object was created successfully
         if (isNaN(jsDate.getTime())) {
@@ -139,16 +114,10 @@ async function httpAddAppointment(req, res) {
             doctor: doctor_id,
         });
 
-        console.log({
-            appointmentDate: jsDate,
-            doctor: doctor_id,
-            appointmentNumber: appointmentCount,
-            mode,
-            patient
-        })
+
 
         const newAppointment = new Appointment({
-            appointmentDate: jsDate,
+            appointmentDate: localDate,
             doctor: doctor_id,
             appointmentNumber: appointmentCount,
             mode,
@@ -160,12 +129,13 @@ async function httpAddAppointment(req, res) {
 
         //  console.log(newAppointment)
         await axios.post(`${process.env.DOMAIN}/meeting/mail`, {
-                to: "adolphjohn0@gmail.com",
+                // to: "adolphjohn0@gmail.com",
+                to: patientEmail,
                 subject: "Appointment Scheduled",
                 text: `Hello ${patientData[0].name} Dr.${req.user.name} has scheduled an appointment on ${userInputDate} at ${userInputTime} ${mode}`
             })
             .then((response) => {
-                console.log(response)
+                console.log(response.data)
             })
             .catch((e) => {
                 console.log(e)

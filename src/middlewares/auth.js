@@ -9,7 +9,6 @@
 //     }
 // }
 
-// TODO : modify the login
 
 // auth.js
 

@@ -8,6 +8,7 @@ const Patient = require("../../models/users/patients/patients.model");
 async function httpRenderPats(req, res) {
     try {
 
+
         const doc_id = req.user._id.toString();
         const patientsArr = await axios.get(`${process.env.DOMAIN}/docs/pats?doc=${doc_id}`)
         const patients = patientsArr.data

@@ -113,7 +113,7 @@ async function httpRegisterPatient(req, res) {
         });
     } else {
         //validation passed
-        User.findOne({ email }).then((user) => {
+        User.findOne({ email }).then(async(user) => {
             if (user) {
                 //use exists
                 errors.push({ msg: "Email is already registered" });
@@ -130,20 +130,19 @@ async function httpRegisterPatient(req, res) {
             } else {
 
 
-                //generate patient  ID
-                const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-                const digits = "0123456789";
+                // //generate patient  ID
 
-                function generatePatientID() {
-                    let id = letters.charAt(Math.floor(Math.random() * letters.length));
+                const SYSTEM_NAME = 'TL';
 
-                    for (let i = 0; i < 5; i++) {
-                        id += digits.charAt(Math.floor(Math.random() * digits.length));
-                    }
+                const patientCount = await User.countDocuments({});
 
-                    return id;
+                function generatePatientId() {
+                    let newPatientRegistrationNumber = patientCount + 1;
+                    return `${SYSTEM_NAME}PAT${String(newPatientRegistrationNumber).padStart(4, '0')}`;
                 }
-                const patientId = generatePatientID()
+
+                const patientId = generatePatientId();
+
 
                 const newUser = new User({
                     name,
@@ -174,7 +173,7 @@ async function httpRegisterPatient(req, res) {
                                     "success_msg",
                                     "User Registered successfully"
                                 );
-                                res.redirect("/");
+                                res.redirect("/doctor");
                             })
                             .catch((err) => console.log(err));
                     });
@@ -184,20 +183,36 @@ async function httpRegisterPatient(req, res) {
     }
 }
 
+// todo : admin routes
 //////////////////////////////////////////////////////////////////////////
 
 //register handler
 async function httpUserRegister(req, res) {
-    const { name, email, password, password2, regNumber, phone, hospital } =
+    const { name, email, password, password2, phone, hospital } =
     req.body;
     let errors = [];
+
+    const SYSTEM_NAME = 'TL';
+
+    const doctorsCount = await Doc.countDocuments({
+
+    });
+
+    function generateDoctorRegistrationNumber() {
+        let newDoctorRegistrationNumber = doctorsCount + 1;
+        return `${SYSTEM_NAME}DR${String(newDoctorRegistrationNumber).padStart(4, '0')}`;
+    }
+
+    const regNumber = generateDoctorRegistrationNumber();
+
+
+    // console.log(doctorsCount)
 
     //check required fields
     if (!name ||
         !email ||
         !password ||
         !password2 ||
-        !regNumber ||
         !phone ||
         !hospital
     ) {
@@ -221,7 +236,6 @@ async function httpUserRegister(req, res) {
             email,
             password,
             password2,
-            regNumber,
             phone,
             hospital,
         });
@@ -298,7 +312,7 @@ async function httpUserLogin(req, res, next) {
 
         // redirect the user to the specified URL;
         successRedirect: "/doctor",
-        failureRedirect: "/",
+        failureRedirect: "/docs/login",
         failureFlash: true,
     })(req, res, next);
 }

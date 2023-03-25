@@ -105,7 +105,7 @@ const prescriptionRouter = require("./routes/prescriptions/prescriptions.router"
 const patManageRouter = require("./routes/manage/manage.router")
 const meetingRouter = require("./routes/meeting/meeting.router")
 const messageRouter = require("./routes/message/message.router")
-const picsRouter = require("./routes/profiles/pic.router")
+    // const picsRouter = require("./routes/profiles/pic.router")
     // routes
 app.use("/", dashboardRouter);
 app.use("/chat", chatBotRouter);
@@ -116,5 +116,5 @@ app.use("/presc", prescriptionRouter);
 app.use("/manage", patManageRouter);
 app.use("/meeting", meetingRouter);
 app.use("/message", messageRouter);
-app.use("/pic", picsRouter);
+// app.use("/pic", picsRouter);
 module.exports = app;

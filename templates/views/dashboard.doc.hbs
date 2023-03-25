@@ -1,4 +1,9 @@
 {{> head}}
+{{!-- <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css"> --}}
+<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
+<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
+{{!-- <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css"> --}}
+<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 
 <body class="row">
 
@@ -19,8 +24,73 @@
   <div class="col-sm-6 pt-2 mt-3  " style="padding-left: 20px;">
    
                        {{> messages }}
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius eum repellendus dolores vitae obcaecati,
-      beatae labore illo, numquam nostrum alias ipsa asperiores corrupti est, aut quidem sint fuga nam ullam.</p>
+
+
+                        <section id="stats-subtitle">
+        <div class="row">
+            <div class="col-12 mt-3 mb-1">
+                <h4 class="text-uppercase">Dr. {{dname}}</h4>
+                
+            </div>
+        </div>
+
+        
+                  <div class="row">
+                 
+
+<div class="col-xl-6 col-md-6 col-sm-8">
+  <div class="card">
+    <div class="card-content">
+      <div class="card-body">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="media">
+            <div class="media-body">
+              <h3 class="card-title mb-0">{{totalPats}}</h3>
+              <span>PATIENTS</span>
+            </div>
+          </div>
+          <div class="align-self-center">
+            <i class="icon-support primary fs-1 me-1"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-xl-6 col-md-6 col-sm-8">
+  <div class="card">
+    <div class="card-content">
+      <div class="card-body">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="media">
+            <div class="media-body">
+              <h3 class="card-title mb-0">{{totalAppointments}}</h3>
+              <span>APPOINTMENTS TODAY</span>
+            </div>
+          </div>
+          <div class="align-self-center">
+            <i class="icon-support primary fs-1 me-1"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+                  </div>
+
+                     </div>
+        
+    </section>
+ 
+
+
+
+
+
+
+
 
   </div>
 

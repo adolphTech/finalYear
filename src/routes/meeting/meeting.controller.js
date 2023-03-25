@@ -101,9 +101,10 @@ async function sendMail(req, res) {
     sgMail
         .send(msg)
         .then(() => {
-            console.log('Email sent')
-            req.flash("success_msg", "Appointment email sent successfull");
-            res.redirect('/manage');
+            // console.log('Email sent')
+            // req.flash("success_msg", "Appointment email sent successfull");
+            // res.redirect('/manage');
+            res.send("email sent")
         })
         .catch((error) => {
             console.error(error.response.body)
