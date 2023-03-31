@@ -3,10 +3,15 @@ mongoose.set('strictQuery', false);
 
 
 function connection() {
-    const username = "adolph";
-    const password = "8893";
-    const cluster = "cluster0.sk2qvsa";
-    const dbname = "telemed";
+    const username = process.env.DB_USERNAME
+        // const password = process.env.DB_PASSWORD
+        // const cluster = process.env.CLUSTER
+        // const dbname = process.env.DB_NAME
+
+
+    const password = process.env.DB_PASSWORD
+    const cluster = process.env.CLUSTER
+    const dbname = process.env.DB_NAME
 
     mongoose.connect(`mongodb+srv://${username}:${password}@${cluster}.mongodb.net/${dbname}?retryWrites=true&w=majority`);
 

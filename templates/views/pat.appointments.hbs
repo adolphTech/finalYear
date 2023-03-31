@@ -18,13 +18,15 @@
  
   <!-- start of page content -->
   <div class="col-sm-8 pt-2 mt-3  " style="">
+
+                       {{> messages }}
+
     <nav class="navbar navbar-expand-sm bg-dark container-fluid">
 
-   <p class="text-white p-1 fs-5">APPOINTMENTS {{role}} <span> Dr.{{appointments.appointmentNumber}}</p></span>
+   <p class="text-white p-1 fs-5">APPOINTMENTS {{role}} <span></p></span>
   
  </nav>
    
-                       {{> messages }}
    
    <div class="bg-white p-3  pt-4 ">
   <table id="patient-table" class="table  table-responsive   table-striped  table-bordered">
@@ -35,6 +37,8 @@
       <th class="fs-6">Time</th>
       <th class="fs-6">Doctor: Name</th>
       <th class="fs-6"> Doctor:Contact</th>
+      <th class="fs-6">Status</th>
+
       
     </tr>
   </thead>
@@ -43,10 +47,29 @@
     {{#each appointments}}
     <tr>
       <td>{{this.appointmentNumber}}</td>
-      <td class="fs-6 text-nowrap">{{this.appointmentDate}}</td>
+      <td class="fs-6 text-nowrap ">
+        <span class=" ">{{this.appointmentDate }}</span>
+                
+        <button class='btn btn-link btn-sm ' id="rescButton" data-bs-toggle='modal tooltip' data-bs-target="#rescModal" data-bs-placement="top" title="Reschedule Appointment" style="">
+            <span style="font-size: 1.2em; color:;">
+                  <i class="fa-regular fa-pen-to-square "></i>
+            </span>
+             
+        </button>
+
+
+      </td>
       <td>{{this.appointmentTime}}</td>
       <td class="fs-6 text-nowrap">{{this.doctor.name}}</td>
       <td class="fs-6">{{this.doctor.phone}}</td>
+      <td class="fs-6">
+        
+         {{!-- <span class="badge rounded-pill bg-success">{{this.status}} --}}
+
+           {{#ifStatus this.status}}
+           {{this.status}}
+           {{/ifStatus}}
+         </span></td>
       
        
      
@@ -56,7 +79,7 @@
 </table>
 </div>
 <!-- Modal -->
-{{>doc.appointment.modal}}
+{{>reschedule.modal}}
   </div>
 
  

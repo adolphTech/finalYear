@@ -9,6 +9,19 @@ const Patient = require("../../models/users/patients/patients.model");
 async function httpRenderPatDashboard(req, res) {
 
     try {
+
+        const today = moment().utcOffset(0).set({ hour: 0, minute: 0, second: 0, millisecond: 0 }).toISOString();
+
+        const patient_id = req.user._id
+
+        const totalAppointments = await Appointment.countDocuments({
+            appointmentDate: {
+                $gte: today,
+                $lt: moment(today).endOf('day').toISOString()
+            },
+            patient: patient_id
+        });
+
         let isDoc;
 
         if (req.user.role === "DOCTOR") {
@@ -16,7 +29,7 @@ async function httpRenderPatDashboard(req, res) {
 
         }
 
-        res.render("dashboard.pat.hbs", { isDoc, page: "PATIENT DASHBOARD" })
+        res.render("dashboard.pat.hbs", { isDoc, dname: req.user.name, totalAppointments, page: "PATIENT DASHBOARD" })
 
         // console.log(req)
 

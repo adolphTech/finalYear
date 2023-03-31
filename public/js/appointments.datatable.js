@@ -6,6 +6,7 @@ $(document).ready(function() {
             { data: 'appointmentTime' },
             { data: 'patientName' },
             { data: 'patientContact' },
+            { data: 'status' },
             { data: 'view' }
         ]
     });
@@ -23,9 +24,32 @@ $(document).ready(function() {
         window.location.href = `/meeting?id=${regNumber}`;
 
     });
+
+    $('#doc-appointment-table tbody').on('click', '#approveButton', function() {
+        var data = table.row($(this).parents('tr')).data(); // Get data from clicked row
+        console.log(data)
+
+        const appIdInput = document.querySelector('#appId2');
+        appIdInput.value = data.appointmentNumber;
+
+        // Set the value of the hidden input element to the patient ID
+
+        // const appIdInput = document.querySelector('#appId');
+        // appIdInput.value = data.appointmentNumber;
+
+        // $('#modalPrefDate').text(data.patientName); // Update patient name in modal
+        // $("#appPatientEmail").text(data.patientEmail)
+        // $("#appPatientEmail").val(data.patientEmail);
+
+        // $('#appPatientId').text(data.patientId)
+        // $('#appPatientId').val(data.patientId); // Set patient ID in hidden input
+        $('#modal').modal('show'); // Show the modal
+    });
+
+
 });
 
-// ----------------  doctor appointments table table --------------------------------------//
+// ----------------  doctor appointments table table end --------------------------------------//
 
 
 
@@ -39,27 +63,21 @@ $(document).ready(function() {
             { data: 'appointmentDate' },
             { data: 'appointmentTime' },
             { data: 'doctorName' },
-            { data: 'doctorContact' }
+            { data: 'doctorContact' },
+            { data: 'status' }
         ]
     });
 
-    // // Handle click event on view button
-    // $('#appointment-table tbody').on('click', '#viewButton', function () {
-    //     var data = table.row( $(this).parents('tr') ).data(); // Get data from clicked row
-    //     console.log(data)
-    //     $('#viewModalLabel').text(data.patientName); // Update modal title with appointment number
+    // Handle click event on view button
+    $('#patient-table tbody').on('click', '#rescButton', function() {
+        var data = table.row($(this).parents('tr')).data(); // Get data from clicked row
+        console.log(data)
 
-    //     $("#viewAppointmentNumber").text(data.appointmentNumber);
-    //     $("#viewAppointmentDate").text(data.appointmentDate);
-    //     $("#viewAppointmentTime").text(data.appointmentTime);
+        const appIdInput = document.querySelector('#appId');
+        appIdInput.value = data.appointmentNumber;
 
-    //     $('#viewPatientName').text(data.patientName); // Update patient name in modal
-    //     $('#viewPatientEmail').text(data.patientEmail); // Update patient email in modal
-    //     $('#viewPatientContact').text(data.patientContact); // Update patient contact in modal
-
-    //     // $('#viewDoctorName').text(data.doctorName); // Update doctor name in modal
-    //     $('#viewModal').modal('show'); // Show the modal
-    // } );
+        $('#rescModal').modal('show'); // Show the modal
+    });
 });
 
 

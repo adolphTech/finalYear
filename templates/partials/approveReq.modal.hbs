@@ -1,0 +1,73 @@
+ <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"> Approve Appointment Reschedule  </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+
+          <form action="/appointments/approve"method="POST" id="approveForm">
+
+           <div class="mb-3">
+             <div class="row">
+            <div class="col-sm-6">
+              <strong>Preffered Date:</strong>
+            </div>
+
+            <div class="col-sm-6">
+              <span id="modalPrefDate"></span>
+            </div>
+           
+          </div>
+                </div>
+
+              <div class="mb-3">
+                  <input type="hidden" class="form-control" name="appId" id="appId2">
+
+                </div>
+            <div>
+
+
+            <div>
+
+              <label for="medication" class="form-label"><strong> New Date:</strong></label>
+
+              <input type="date" class="form-control " id="date-input2" name="date">
+
+            </div>
+
+            <div class="mb-3">
+              <label for="description" class="form-label"><strong>Meeting Action:</strong></label>
+
+              <select class="form-select  " name="status" aria-label=".form-select-sm example" required>
+                
+                <option  value="rescheduled">Approve Schedule Request</option>
+                <option value="done">Mark Meeting Done</option>
+              
+                <option value="cancelled">Cancel Meeting</option>
+              </select>
+            </div>
+                
+
+                 <div class="modal-footer">
+
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+               <button type="submit" class="btn btn-primary">Make Changes</button>
+                 </div>
+          </form>
+         
+          
+        </div>
+      </div>
+     
+        
+        
+    
+    </div>
+  </div>
+</div>   
+
+

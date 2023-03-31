@@ -59,8 +59,19 @@ async function httpRenderPatientAppointments(req, res) {
         const pat_id = req.user._id.toString();
 
         const appointmentsArr = await axios.get(`${process.env.DOMAIN}/appointments/pat?patient=${pat_id}`);
-        const appointments = appointmentsArr.data
-            //  console.log(data)
+
+        const appointmentsUn = appointmentsArr.data
+
+        const appointments = appointmentsUn.map(appointment => {
+            const appointmentDate = moment.utc(appointment.appointmentDate);
+            const formattedDate = appointmentDate.format('ddd : M/D/YY');
+            const formattedTime = appointmentDate.format('h:mm A');
+            return {...appointment,
+                appointmentDate: formattedDate,
+                appointmentTime: formattedTime,
+            };
+        });
+        console.log(appointments)
 
         //  res.send(data)
 
@@ -110,16 +121,24 @@ async function httpAddAppointment(req, res) {
 
         const patient = patientData[0]._id //getting the id of the patient from db
 
-        const appointmentCount = await Appointment.countDocuments({
-            doctor: doctor_id,
-        });
 
+
+        const SYSTEM_NAME = 'AP';
+
+        const appCount = await Appointment.countDocuments({ doctor: doctor_id });
+
+        function generatePatientId() {
+            let newAppNumber = appCount + 1;
+            return `${SYSTEM_NAME}${String(newAppNumber).padStart(4, '0')}`;
+        }
+
+        const appId = generatePatientId();
 
 
         const newAppointment = new Appointment({
             appointmentDate: localDate,
             doctor: doctor_id,
-            appointmentNumber: appointmentCount,
+            appointmentNumber: appId,
             mode,
             patient
         })
@@ -208,4 +227,77 @@ async function httpFetchSpecPatientAppointment(req, res) {
 
 }
 
-module.exports = { httpAddAppointment, httpFetchAppointment, httpRenderPatientAppointments, httpFetchSpecPatientAppointment, httpRenderDoctorsAppointments };
+async function httpRescAppointment(req, res) {
+    // todo : filter with doctor
+
+    try {
+        console.log(req.body)
+        const { appId, date } = req.body;
+
+        Appointment.findOneAndUpdate({ appointmentNumber: appId }, { resc: { prefferedDate: date, approved: false }, status: "requested" }, { new: true })
+            .then((updatedAppointment) => {
+                console.log(updatedAppointment);
+                // Do something with the updated appointment
+            })
+            .catch((error) => {
+                console.log(error);
+                // Handle the error
+            });
+
+        req.flash("success_msg", "Appointment reschedule request successfull");
+        res.redirect('/appointments/patients');
+
+    } catch (e) {
+        console.log(e)
+
+        req.flash("error_msg", "Appointment reschedule request failed");
+        res.redirect('/appointments/patients');
+    }
+
+}
+
+async function httpApproveResc(req, res) {
+    // todo : filter with doctor
+
+    try {
+        console.log(req.body)
+        const { appId, date, status } = req.body;
+
+        if (req.body.date) {
+            Appointment.findOneAndUpdate({ appointmentNumber: appId }, { status: status, appointmentDate: date }, { new: true })
+                .then((updatedAppointment) => {
+                    console.log(updatedAppointment);
+                    // Do something with the updated appointment
+                })
+                .catch((error) => {
+                    console.log(error);
+                    // Handle the error
+                });
+
+        } else {
+            Appointment.findOneAndUpdate({ appointmentNumber: appId }, { status: status }, { new: true })
+                .then((updatedAppointment) => {
+                    console.log(updatedAppointment);
+                    // Do something with the updated appointment
+                })
+                .catch((error) => {
+                    console.log(error);
+                    // Handle the error
+                });
+        }
+
+
+
+        req.flash("success_msg", "Appointment reschedule request successfull");
+        res.redirect('/appointments/doc');
+
+    } catch (e) {
+        console.log(e)
+
+        req.flash("error_msg", "Appointment reschedule request failed");
+        res.redirect('/appointments/doc');
+    }
+
+}
+
+module.exports = { httpAddAppointment, httpRescAppointment, httpApproveResc, httpFetchAppointment, httpRenderPatientAppointments, httpFetchSpecPatientAppointment, httpRenderDoctorsAppointments };
