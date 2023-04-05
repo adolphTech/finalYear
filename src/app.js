@@ -22,6 +22,7 @@ const redis = require('redis');
 // });
 
 const docPassport = require("./middlewares/both.passport");
+const { pillFunction } = require("./middlewares/hbs.helper");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -93,20 +94,9 @@ app.set("view engine", "hbs");
 app.set("views", viewsPath);
 hbs.registerPartials(partialsPath);
 
+// importing helpers
+pillFunction();
 
-hbs.registerHelper('ifStatus', function(status, options) {
-    if (status === 'cancelled') {
-        return new hbs.SafeString(`<span class="badge rounded-pill bg-danger">${status}</span>`);
-    } else if (status === 'done') {
-        return new hbs.SafeString(`<span class="badge rounded-pill bg-info">${status}</span>`);
-    } else if (status === 'pending') {
-        return new hbs.SafeString(`<span class="badge rounded-pill bg-success">${status}</span>`);
-    } else if (status === 'requested') {
-        return new hbs.SafeString(`<span class="badge rounded-pill bg-primary">${status}</span>`);
-    } else {
-        return new hbs.SafeString(`<span class="badge rounded-pill bg-warning">${status}</span>`);
-    }
-});
 
 // app.set('view engine', 'ejs');
 
@@ -120,8 +110,8 @@ const prescriptionRouter = require("./routes/prescriptions/prescriptions.router"
 const patManageRouter = require("./routes/manage/manage.router")
 const meetingRouter = require("./routes/meeting/meeting.router")
 const messageRouter = require("./routes/message/message.router")
-    // const picsRouter = require("./routes/profiles/pic.router")
-    // routes
+const adminsRouter = require("./routes/admin/admin.router");
+// routes
 app.use("/", dashboardRouter);
 app.use("/chat", chatBotRouter);
 app.use("/users", usersRouter);
@@ -131,5 +121,5 @@ app.use("/presc", prescriptionRouter);
 app.use("/manage", patManageRouter);
 app.use("/meeting", meetingRouter);
 app.use("/message", messageRouter);
-// app.use("/pic", picsRouter);
+app.use("/admin", adminsRouter);
 module.exports = app;

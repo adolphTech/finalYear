@@ -21,8 +21,24 @@ module.exports = {
         res.redirect('/');
     },
 
+    // ensureDoctorAuthenticated: function(req, res, next) {
+    //     if (req.isAuthenticated() && req.user.role === 'DOCTOR') {
+    //         return next();
+    //     }
+    //     req.flash('error_msg', 'You are not authorized to access this page');
+    //     res.redirect('/');
+    // },
+
     ensureDoctorAuthenticated: function(req, res, next) {
         if (req.isAuthenticated() && req.user.role === 'DOCTOR') {
+            return next();
+        }
+        req.flash('error_msg', 'You are not authorized to access this page');
+        res.redirect('/');
+    },
+
+    ensureAdminAuthenticated: function(req, res, next) {
+        if (req.isAuthenticated() && req.user.role === 'ADMIN') {
             return next();
         }
         req.flash('error_msg', 'You are not authorized to access this page');

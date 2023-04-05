@@ -50,6 +50,8 @@ async function renderLoginPage(req, res) {
     res.render("doc.login.hbs");
 }
 
+
+
 // register
 async function renderRegisterPage(req, res) {
     let isDoc;
@@ -295,27 +297,69 @@ async function httpUserRegister(req, res) {
 
 //login handle
 
-// async function httpUserLogin(req,res,next){
 
-// passport.authenticate("local",{
-//    successRedirect: "/",
-//    failureRedirect : "/docs/login",
-//    failureFlash :true
-// })(req,res,next);
-// };
+// async function httpUserLogin(req, res, next) {
+//     console.log(req)
+
+//     passportDoctor.authenticate("doctor", {
+
+
+
+//         // redirect the user to the specified URL;
+//         successRedirect: "/doctor",
+//         failureRedirect: "/docs/login",
+//         failureFlash: true,
+//     })(req, res, next);
+// }
 
 async function httpUserLogin(req, res, next) {
+    passportDoctor.authenticate("doctor", (err, user, info) => {
+        if (err) {
+            console.error(err);
+            return next(err);
+        }
 
-    passportDoctor.authenticate("doctor", {
+        if (!user) {
+            return res.redirect("/docs/login");
+        }
 
+        req.logIn(user, (err) => {
+            if (err) {
+                console.error(err);
+                return next(err);
+            }
 
-
-        // redirect the user to the specified URL;
-        successRedirect: "/doctor",
-        failureRedirect: "/docs/login",
-        failureFlash: true,
+            // Check user role and redirect accordingly
+            if (req.user.role === "ADMIN") {
+                return res.redirect("/admin/dashboard");
+            } else if (req.user.role === "DOCTOR") {
+                return res.redirect("/doctor");
+            } else {
+                return res.redirect("/");
+            }
+        });
     })(req, res, next);
 }
+
+
+
+
+// async function httpUserLogin(req, res, next) {
+//     passportDoctor.authenticate("doctor", {
+//         successRedirect: (req, res) => {
+//             if (req.user.role === "ADMIN") {
+//                 return "/admin";
+//             } else if (req.user.role === "DOCTOR") {
+//                 return "/doctor";
+//             } else {
+//                 return "/";
+//             }
+//         },
+//         failureRedirect: "/docs/login",
+//         failureFlash: true
+//     })(req, res, next);
+// }
+
 
 //logout handle
 async function httpUserLogout(req, res, next) {

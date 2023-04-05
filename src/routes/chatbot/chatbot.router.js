@@ -3,13 +3,14 @@ require("dotenv").config()
 
 const { ensureAuthenticated, ensurePatientAuthenticated } = require("../../middlewares/auth")
 
-const { httpRenderChatbot, httpDialogflowFullfilment } = require("./chatbot.controller");
+const { httpRenderChatbot, httpDialogflowFullfilment, httpApiSymptoms } = require("./chatbot.controller");
 
 
 const chatBotRouter = express.Router();
 
 chatBotRouter.get("/", ensureAuthenticated, ensurePatientAuthenticated, httpRenderChatbot);
-// chatBotRouter.post("/fullfillment",httpDialogflowFullfilment)
+chatBotRouter.get("/symptoms", httpApiSymptoms)
+    // chatBotRouter.post("/fullfillment",httpDialogflowFullfilment)
 
 chatBotRouter.post("/dialogflow-fulfillment", (request, response) => {
     httpDialogflowFullfilment(request, response);

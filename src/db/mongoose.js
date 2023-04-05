@@ -15,7 +15,7 @@ function connection() {
 
     mongoose.connect(`mongodb+srv://${username}:${password}@${cluster}.mongodb.net/${dbname}?retryWrites=true&w=majority`);
 
-
+    // mongoose.connect("mongodb+srv://adolph:<password>@cluster0.sk2qvsa.mongodb.net/?retryWrites=true&w=majority")
     // mongoose.connect("mongodb://127.0.0.1:27017/telemed");
 }
 

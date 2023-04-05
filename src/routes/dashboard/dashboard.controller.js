@@ -29,7 +29,7 @@ async function httpRenderPatDashboard(req, res) {
 
         }
 
-        res.render("dashboard.pat.hbs", { isDoc, dname: req.user.name, totalAppointments, page: "PATIENT DASHBOARD" })
+        res.render("dashboard.pat.hbs", { isDoc, dname: req.user.name, totalAppointments, role: req.user.role, page: "PATIENT DASHBOARD" })
 
         // console.log(req)
 
@@ -68,7 +68,7 @@ async function httpRenderDocDashboard(req, res) {
             isDoc = true;
         }
 
-        res.render("dashboard.doc.hbs", { isDoc, dname: req.user.name, totalAppointments, totalPats, page: "DOCTOR DASHBOARD" })
+        res.render("dashboard.doc.hbs", { isDoc, dname: req.user.name, role: req.user.role, totalAppointments, totalPats, page: "DOCTOR DASHBOARD" })
 
         // console.log(req)
 
@@ -93,7 +93,20 @@ async function httpRenderHome(req, res) {
         res.status(500).send(e)
     }
 }
+
+// async function renderAdmin(req, res) {
+//     try {
+
+
+//         // console.log(req)
+
+
+
+//     } catch (e) {
+//         res.status(500).send(e)
+//     }
+// }
 // TODO: TWO DASHBOARDS PATIENT AND DOCTOR
 
 
-module.exports = { httpRenderDocDashboard, httpRenderPatDashboard, httpRenderHome }
+module.exports = { httpRenderDocDashboard, httpRenderPatDashboard, httpRenderHome, }

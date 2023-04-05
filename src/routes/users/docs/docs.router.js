@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { ensureAuthenticated, ensureDoctorAuthenticated, ensurePatientAuthenticated } = require("../../../middlewares/auth")
+const { ensureAuthenticated, ensureDoctorAuthenticated, ensurePatientAuthenticated, ensureAdminAuthenticated } = require("../../../middlewares/auth")
 
 const {
     renderLoginPage,
@@ -26,7 +26,10 @@ docsRouter.get("/pats", httpAllpatientsForDoc)
 
 
 docsRouter.get("/login", renderLoginPage);
-docsRouter.get("/register", ensureAuthenticated, renderRegisterPage);
+// admin
+docsRouter.get("/register", ensureAuthenticated, ensureAdminAuthenticated, renderRegisterPage);
+
+// ------------------admin
 // 
 docsRouter.get("/addPat", ensureAuthenticated, ensureDoctorAuthenticated, renderPatientRegisterPage)
 docsRouter.post("/addPat", ensureAuthenticated, httpRegisterPatient)
